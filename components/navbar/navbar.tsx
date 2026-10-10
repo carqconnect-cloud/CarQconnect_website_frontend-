@@ -67,7 +67,7 @@ export function Navbar() {
       >
         <div className={`flex items-center justify-between ${isScrolled || menuOpen ? 'pb-3 pt-3' : 'pb-3 pt-5'}`} style={{ paddingLeft: 'clamp(20px, 4vw, 30px)', paddingRight: 'clamp(20px, 4vw, 30px)' }}>
           <div className="flex-1 hidden min-[1025px]:flex items-center">
-            <nav className="flex items-center gap-[clamp(16px,2vw,30px)]" aria-label="Main">
+            <nav className="flex items-center gap-[clamp(16px,2vw,28px)]" aria-label="Main">
               {links.map((link) => {
                 const isActive = (link.href === '/' && pathname === '/') || (link.href !== '/' && pathname.startsWith(link.href));
                 return (
@@ -75,7 +75,7 @@ export function Navbar() {
                     key={link.label} 
                     href={link.href}
                     style={{ fontFamily: INTER }}
-                    className={`text-[clamp(13px,0.92vw,15px)] font-medium tracking-[0.01em] transition-all duration-200 ${
+                    className={`whitespace-nowrap text-[clamp(13px,0.92vw,15px)] font-medium tracking-[0.01em] transition-all duration-200 ${
                       isActive ? 'text-[#ff6a00]' : 'text-[#131316] hover:text-[#ff6a00]'
                     }`}
                   >
@@ -114,9 +114,9 @@ export function Navbar() {
               aria-controls="mobile-menu"
               onClick={() => setMenuOpen(!menuOpen)}
             >
-              <span className={`block w-6 h-[1.5px] transition-all ${isLight ? "bg-black" : "bg-white"} ${menuOpen ? 'rotate-45 translate-y-[7.5px]' : ''}`}></span>
-              <span className={`block w-6 h-[1.5px] transition-all ${isLight ? "bg-black" : "bg-white"} ${menuOpen ? 'opacity-0' : ''}`}></span>
-              <span className={`block w-6 h-[1.5px] transition-all ${isLight ? "bg-black" : "bg-white"} ${menuOpen ? '-rotate-45 -translate-y-[7.5px]' : ''}`}></span>
+              <span className={`block w-6 h-[1.5px] transition-all ${"bg-[#111]"} ${menuOpen ? 'rotate-45 translate-y-[7.5px]' : ''}`}></span>
+              <span className={`block w-6 h-[1.5px] transition-all ${"bg-[#111]"} ${menuOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`block w-6 h-[1.5px] transition-all ${"bg-[#111]"} ${menuOpen ? '-rotate-45 -translate-y-[7.5px]' : ''}`}></span>
             </button>
           </div>
         </div>

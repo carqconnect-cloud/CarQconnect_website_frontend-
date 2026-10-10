@@ -1,6 +1,6 @@
-import { BackButton } from "@/components/ui/back-button";
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { BackButton } from "@/components/ui/back-button";
 import { Satellite, Clock, MapPinned, BellRing, Activity, Share2, MapPin, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -20,23 +20,27 @@ const features = [
 export default function GpsPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-[#FFFFFF] pt-40 pb-20 border-b border-[#ECEEF4]">
+      <section className="relative overflow-hidden bg-[#FFFFFF] pt-[70px] md:pt-[80px] pb-6 md:pb-20 border-b border-[#ECEEF4]">
         <div 
           aria-hidden="true" 
           className="pointer-events-none absolute inset-0"
           style={{ background: 'radial-gradient(600px 400px at 85% 0%, rgba(255,90,0,0.12), transparent 70%)' }}
         />
-        <div className="container-page relative z-10 max-w-[1180px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div className="pt-8"><BackButton fallback="/#features" label="Back to Features" /></div>
+        <div className="container-page relative z-10 max-w-[1180px] mx-auto">
+          <div className="mb-2 max-md:mt-4 md:mt-2"><BackButton fallback="/features" label="Back to features" /></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        
           
           {/* Left Column: Text */}
           <div className="flex flex-col">
+            
+
             <div className="flex items-center gap-4 mb-6">
               <div className="w-[32px] h-[2px] bg-[#FF5A00]" />
               <span className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#FF5A00]">GPS TRACKING</span>
             </div>
             
-            <h1 className="font-display font-[800] tracking-tight text-[#12131A] mb-5" style={{ fontSize: 'clamp(34px, 5vw, 56px)', lineHeight: 1.1 }}>
+            <h1 className="font-display font-bold tracking-tight text-[#12131A] mb-5" style={{ fontSize: 'clamp(34px, 5vw, 56px)', lineHeight: 1.1 }}>
               Know where your vehicle is.<br/>
               <span className="text-[#FF5A00]">Wherever it goes.</span>
             </h1>
@@ -48,7 +52,7 @@ export default function GpsPage() {
               Live tracking depends on device and network conditions.
             </p>
             
-            <div className="flex flex-wrap items-center gap-[14px]">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-[14px]">
               <a href="/#download" className="flex items-center justify-center h-[52px] px-[28px] bg-[#FF5A00] text-white text-[14px] font-bold rounded-[12px] shadow-[0_10px_30px_rgba(255,90,0,.3)] hover:bg-[#FF7226] transition-colors">
                 Download App
               </a>
@@ -59,7 +63,7 @@ export default function GpsPage() {
           </div>
 
           {/* Right Column: Visual */}
-          <div className="w-full max-w-[560px] max-lg:mx-auto rounded-[26px] bg-[#12131A] border border-[#2A2D3A] shadow-[0_24px_60px_rgba(18,19,26,0.28)] overflow-hidden text-white mt-8 lg:mt-0 flex flex-col">
+          <div className="w-full max-w-[560px] max-lg:mx-auto rounded-[26px] bg-[#12131A] border border-[#2A2D3A] shadow-[0_24px_60px_rgba(18,19,26,0.28)] overflow-hidden text-white mt-4 lg:mt-[50px] flex flex-col">
             
             {/* Top Bar */}
             <div className="flex justify-between items-center px-5 py-4 border-b border-[#2A2D3A]">
@@ -67,7 +71,7 @@ export default function GpsPage() {
                 <span className="text-[11px] text-[#7B7F90] uppercase tracking-[0.1em] font-medium mb-1">
                   TRACKED VEHICLE
                 </span>
-                <span className="font-display font-[800] text-[15px] tracking-[0.02em]">
+                <span className="font-display font-bold text-[15px] tracking-[0.02em]">
                   MP09 &bull;&bull; 1234
                 </span>
               </div>
@@ -157,6 +161,7 @@ export default function GpsPage() {
             </div>
           </div>
         </div>
+      </div>
       </section>
 
       <section className="bg-surface-2 py-24 md:py-32 border-y border-border">

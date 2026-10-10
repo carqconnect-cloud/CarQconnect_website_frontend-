@@ -4,6 +4,7 @@ import { Archivo, Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar/navbar";
 import { Footer } from "@/components/footer/footer";
+import WhatsAppFloat from "@/components/whatsapp-float";
 
 const display = Archivo({
   subsets: ["latin"],
@@ -70,6 +71,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );

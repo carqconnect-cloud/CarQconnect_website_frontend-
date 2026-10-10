@@ -19,11 +19,11 @@ export function SectionHeading({
         className
       )}
     >
-      <h2 className="font-display text-h2 md:text-h1 text-ink text-balance">
+      <h2 className="font-display text-[22px] md:text-[32px] lg:text-[42px] leading-tight font-[800] text-ink text-balance">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-body-lg text-secondary">
+        <p className="mt-2 md:mt-4 text-body-lg text-secondary">
           {description}
         </p>
       )}

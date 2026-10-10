@@ -739,3 +739,242 @@ p, .body-text { font-size: clamp(15px, 1.8vw, 17px); line-height: 1.6; }
 
 
 
+
+
+/* --- FINAL HERO CQW ARCHITECTURE --- */
+.hero {
+  position: relative !important;
+  width: min(100%, 1920px) !important;
+  margin: 0 auto !important;
+  container-type: inline-size !important;
+  overflow: hidden !important;
+  background-color: #d7d6dc !important; /* Base mobile bg */
+}
+
+/* Base states */
+.hero-image-mobile-only { display: block; }
+.hero-image-desktop-only { display: none; }
+.hero__product-image {
+  position: absolute !important;
+  inset: auto auto 0 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  background: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.hero__copy {
+  position: absolute !important;
+  z-index: 2 !important;
+  background: transparent !important;
+  right: 3.6cqw !important;
+  top: 23cqw !important;
+  text-align: right !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+.hero__title {
+  margin: 0 !important;
+  color: #111 !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  line-height: 1.06 !important;
+  font-size: clamp(11px, 4.7cqw, 80px) !important;
+  background: transparent !important;
+  text-align: right !important;
+}
+
+.hero__lede {
+  margin: 14px 0 24px 0 !important;
+  color: #6b6b73 !important;
+  line-height: 1.4 !important;
+  font-size: clamp(7.5px, 2.5cqw, 28px) !important;
+  background: transparent !important;
+  text-align: right !important;
+}
+
+.hero__line {
+  display: block !important;
+  white-space: nowrap !important;
+  transform: none !important;
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+.buy {
+  display: inline-flex !important;
+  height: clamp(24px, 8cqw, 46px) !important;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 10;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 0 !important;
+}
+.buy__label {
+  font-size: clamp(9px, 3cqw, 15px) !important;
+}
+.buy__body {
+  height: 100% !important;
+  clip-path: polygon(0 0, calc(100% - 1.2em) 0, 100% 50%, calc(100% - 1.2em) 100%, 0 100%) !important;
+  background: linear-gradient(90deg, #ff5a14 0%, #ff3d00 100%) !important;
+  padding: 0 2em 0 1.2em !important;
+  border-radius: 0 !important;
+}
+.buy::after, .buy__body::before, .buy__divider, .buy__eyelet, .buy__cart {
+  display: none !important;
+}
+
+/* Desktop Defaults Recovery */
+@media (min-width: 1024px) {
+  .hero {
+    background-color: #f4f4f6 !important;
+    height: 100svh !important;
+    min-height: 620px !important;
+    aspect-ratio: auto !important;
+  }
+  .hero-image-mobile-only { display: none !important; }
+  .hero-image-desktop-only { display: block !important; }
+  .hero__product-image {
+    inset: 0 !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+  .hero__copy {
+    top: 16svh !important;
+    right: clamp(30px, 3.5vw, 48px) !important;
+    width: min(80vw, 1200px) !important;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero {
+    aspect-ratio: 100 / 84 !important;
+    height: auto !important;
+    max-height: 100svh !important;
+  }
+  .hero__product-image {
+    aspect-ratio: 481 / 272 !important;
+  }
+}
+
+/* Mobile (max-width: 767px) */
+@media (max-width: 767px) {
+  .hero {
+    aspect-ratio: 100 / 84 !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  .hero__product-image {
+    aspect-ratio: 481 / 272 !important;
+  }
+}
+
+/* Global resets */
+html, body {
+  overflow-x: hidden !important;
+}
+
+/* Header Overrides for Mobile/Tablet */
+@media (max-width: 1023px) {
+  header {
+    position: absolute !important;
+    padding: calc(env(safe-area-inset-top) + 8px) 14px 8px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+  }
+  header > div {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  header span.font-semibold {
+    font-size: 18px !important;
+  }
+  header svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  header button {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  header button span {
+    background-color: #111 !important;
+  }
+}
+
+.wa-probe { position: fixed; left: 0; bottom: 0; width: 0; height: 0; padding-bottom: env(safe-area-inset-bottom, 0px); visibility: hidden; pointer-events: none; }
+
+.wa-wrap {
+  position: fixed;
+  top: 0;
+  right: calc(clamp(12px, 2vw, 32px) + env(safe-area-inset-right, 0px));
+  z-index: 90;
+  opacity: 0;
+  transform: translateY(100vh);      /* JS chalne se pehle screen ke bahar */
+}
+.wa-wrap.wa-ready {
+  opacity: 1;
+  transition: transform 0.45s cubic-bezier(.22,.8,.3,1), opacity 0.2s;
+}
+
+.wa-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: clamp(44px, 3.1vw, 56px);
+  padding: 0 clamp(16px, 1.4vw, 24px);
+  border-radius: 999px;
+  background: #25d366; color: #fff; text-decoration: none;
+  font-weight: 700; font-size: clamp(14px, 1.1vw, 18px); white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(37,211,102,.35), 0 2px 6px rgba(0,0,0,.15);
+  transition: transform .2s ease, background .2s ease;
+}
+.wa-btn:hover { background: #1ebe5a; transform: translateY(-2px); }
+.wa-btn:active { transform: scale(.97); }
+.wa-icon { width: 24px; height: 24px; flex: none; }
+
+/* Mobile: sirf icon wala gol button */
+@media (max-width: 639px) {
+  .wa-btn { width: 52px; height: 52px; padding: 0; }
+  .wa-label { display: none; }
+  .wa-icon { width: 28px; height: 28px; }
+}
+@media (max-width: 359px) {
+  .wa-btn { width: 46px; height: 46px; }
+  .wa-icon { width: 24px; height: 24px; }
+}
+/* Tablet */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .wa-btn { height: 44px; font-size: 14px; padding: 0 16px; }
+  .wa-icon { width: 22px; height: 22px; }
+}
+/* Bahut badi screen */
+@media (min-width: 1920px) {
+  .wa-btn { height: 56px; font-size: 18px; }
+}
+/* Landscape phone */
+@media (orientation: landscape) and (max-height: 500px) {
+  .wa-btn { width: 44px; height: 44px; padding: 0; }
+  .wa-label { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-wrap.wa-ready, .wa-btn { transition: none; }
+}
+@media print { .wa-wrap { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  svg animate {
+    display: none !important;
+  }
+}

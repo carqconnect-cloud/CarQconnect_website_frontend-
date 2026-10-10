@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BackButton } from "@/components/ui/back-button";
 import { QrCode, MapPin, Route, Headset, CheckCircle2, Zap, Crown, Lock, Smartphone, ArrowRightLeft } from "lucide-react";
 import { membershipPlans } from "@/lib/data/membershipPlans";
 
@@ -14,10 +15,11 @@ export default function MembershipPage() {
       
       {/* 1. HERO SECTION */}
       <section 
-        className="pt-[140px] pb-[80px] px-6 relative"
+        className="pt-[110px] pb-[40px] px-6 relative"
         style={{ background: 'radial-gradient(60% 120% at 90% 0%, rgba(255,106,0,.28) 0%, rgba(255,106,0,0) 62%), linear-gradient(180deg, #fff1e3 0%, #f7f9fc 100%)' }}
       >
         <div className="max-w-[1240px] mx-auto flex flex-col items-center text-center relative z-10">
+          <div className="w-full flex justify-start mb-4 md:mb-6"><BackButton fallback="/features" label="Back to features" /></div>
           <div className="flex items-center gap-4 mb-6">
             <div className="w-[32px] h-[2px] bg-[#ff5a00]" />
             <span className="text-[12px] font-[800] uppercase tracking-[0.16em] text-[#ff5a00]">MEMBERSHIP</span>
@@ -28,7 +30,7 @@ export default function MembershipPage() {
             Membership that grows with <span className="text-[#ff5a00]">your drive.</span>
           </h1>
           
-          <p className="text-[17px] text-[#454c60] max-w-[560px] leading-relaxed mb-10 font-medium">
+          <p className="text-[17px] text-[#454c60] max-w-[560px] leading-relaxed mb-8 font-medium">
             Membership unlocks features across QR safety, GPS, trip intelligence and support. View plans and manage yours in the carQconnect app.
           </p>
 
