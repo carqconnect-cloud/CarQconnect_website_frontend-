@@ -38,7 +38,7 @@ export default function SafetyPage() {
             {contactFeatures.map(({ icon: Icon, title, description }) => (
               <div key={title} className="rounded-card-lg border border-[#ff5a00]/40 bg-surface p-6 hover:border-[#ff5a00] hover:shadow-glow transition-all">
                 <Icon className="h-5 w-5 text-[#ff5a00]" strokeWidth={1.75} />
-                <h3 className="mt-4 font-display text-[15px] font-medium text-ink">{title}</h3>
+                <h3 className="mt-4 font-display font-medium text-ink">{title}</h3>
                 <p className="mt-1.5 text-[13px] text-tertiary">{description}</p>
               </div>
             ))}

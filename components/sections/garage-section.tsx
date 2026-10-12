@@ -59,7 +59,7 @@ export function GarageSection() {
                 </span>
               </div>
 
-              <h3 className="mt-5 font-display text-lg font-bold text-neutral-900">
+              <h3 className="mt-5 font-display font-bold text-neutral-900">
                 {v.name}
               </h3>
               <p className="text-[13px] text-neutral-500">{v.reg}</p>

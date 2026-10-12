@@ -4,9 +4,9 @@ const outputs = [
   { icon: Milestone, label: "Distance", value: "612 km" },
   { icon: Gauge, label: "Travel time", value: "~9h 40m" },
   { icon: Fuel, label: "Fuel needed", value: "~41 L (est.)" },
-  { icon: IndianRupee, label: "Fuel cost (est.)", value: "~?4,270" },
-  { icon: TicketPercent, label: "Toll estimate", value: "?1,680 (est.)" },
-  { icon: Wallet, label: "Total trip cost", value: "?5,950 (est.)", subtext: "about ?8.1 per km (est.)" },
+  { icon: IndianRupee, label: "Fuel cost (est.)", value: "Rs. 4,270" },
+  { icon: TicketPercent, label: "Toll estimate", value: "Rs. 1,680 (est.)" },
+  { icon: Wallet, label: "Total trip cost", value: "Rs. 5,950 (est.)", subtext: "about Rs. 8.1 per km (est.)" },
 ];
 
 export function TripPlannerDemo() {
@@ -26,7 +26,7 @@ export function TripPlannerDemo() {
         </div>
       </div>
 
-      <div className="mt-3 flex overflow-x-auto min-[420px]:flex-wrap gap-2 hide-scrollbar snap-x snap-mandatory">
+      <div className="mt-3 flex overflow-x-auto min-[420px]:flex-wrap gap-2 hide-scrollbar snap-x snap-mandatory px-1 -mx-1 py-1 -my-1">
         {["Fastest", "Economical", "Lower toll"].map((pref, i) => {
           const isSelected = pref === "Economical";
           return (

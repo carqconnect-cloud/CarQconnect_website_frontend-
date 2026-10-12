@@ -39,7 +39,7 @@ export function VehicleUtilitiesSection() {
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ff6a00]/10 border border-[#ff6a00]/20 shrink-0">
                 <Icon className="h-5 w-5 text-[#ff6a00]" strokeWidth={1.75} />
               </div>
-              <h3 className="mt-4 font-display text-[clamp(15px,1.9vw,17px)] font-[700] text-[#12141c]">
+              <h3 className="mt-4 font-display font-[700] text-[#12141c]">
                 {title}
               </h3>
               <p className="mt-1.5 text-[clamp(12.5px,1.5vw,14px)] leading-[1.55] text-neutral-600">

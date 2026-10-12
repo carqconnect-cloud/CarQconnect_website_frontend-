@@ -33,7 +33,7 @@ export function AiChatDemo() {
           className="ml-auto max-w-[92%] rounded-2xl rounded-tr-sm px-4 py-3 text-[14px] leading-relaxed text-white/90"
           style={{ backgroundColor: '#262a37' }}
         >
-          Kal Indore se Udaipur jaana hai, toll kam rakhna hai.
+          I need to drive from Indore to Udaipur tomorrow, find a route with lower tolls.
         </div>
 
         <div 
@@ -47,8 +47,8 @@ export function AiChatDemo() {
           {[
             { icon: Route, label: "Route", value: "Economical" },
             { icon: Fuel, label: "Fuel (est.)", value: "~41 L" },
-            { icon: TicketPercent, label: "Toll (est.)", value: "?1,680" },
-            { icon: Wallet, label: "Total (est.)", value: "?14,950" },
+            { icon: TicketPercent, label: "Toll (est.)", value: "Rs. 1,680" },
+            { icon: Wallet, label: "Total (est.)", value: "Rs. 14,950" },
           ].map(({ icon: Icon, label, value }) => (
             <div key={label} className="rounded-xl border p-3 flex flex-col gap-1.5" style={{ backgroundColor: '#1c1f2a', borderColor: 'rgba(255,255,255,.08)' }}>
               <Icon className="h-4 w-4 text-[#ff6a00]" strokeWidth={2} />

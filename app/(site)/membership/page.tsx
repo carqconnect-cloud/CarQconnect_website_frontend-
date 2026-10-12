@@ -22,11 +22,11 @@ export default function MembershipPage() {
           <div className="w-full flex justify-start mb-4 md:mb-6"><BackButton fallback="/features" label="Back to features" /></div>
           <div className="flex items-center gap-4 mb-6">
             <div className="w-[32px] h-[2px] bg-[#ff5a00]" />
-            <span className="text-[12px] font-[800] uppercase tracking-[0.16em] text-[#ff5a00]">MEMBERSHIP</span>
+            <span className="text-[clamp(9.5px,2vw,12px)] font-[800] uppercase tracking-[0.16em] text-[#ff5a00]">MEMBERSHIP</span>
             <div className="w-[32px] h-[2px] bg-[#ff5a00]" />
           </div>
           
-          <h1 className="text-[clamp(34px,5vw,54px)] font-[800] leading-[1.08] tracking-tight text-[#0f1220] max-w-[800px] mb-6">
+          <h1 className="font-[800] text-[#0f1220] max-w-[800px] mb-6">
             Membership that grows with <span className="text-[#ff5a00]">your drive.</span>
           </h1>
           
@@ -58,11 +58,11 @@ export default function MembershipPage() {
         <div className="max-w-[1140px] mx-auto relative z-10 flex flex-col items-center">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-[32px] h-[1px] bg-[#ff5a00]" />
-            <span className="text-[11px] font-[800] uppercase tracking-[0.2em] text-[#ff5a00]">PLANS</span>
+            <span className="text-[clamp(9px,1.8vw,11px)] font-[800] uppercase tracking-[0.2em] text-[#ff5a00]">PLANS</span>
             <div className="w-[32px] h-[1px] bg-[#ff5a00]" />
           </div>
           
-          <h2 className="text-[clamp(32px,4vw,42px)] font-[800] tracking-tight mb-2 text-white text-center">
+          <h2 className="font-[800] mb-2 text-white text-center">
             Choose your plan
           </h2>
           <p className="text-[#a3a7b7] text-[16px] text-center max-w-[500px] mb-8 leading-relaxed font-medium">
@@ -102,7 +102,7 @@ export default function MembershipPage() {
                       {plan.id === 'plus' && <Zap className="w-[12px] h-[12px] text-[#ff5a00]" fill="currentColor" />}
                       {plan.id === 'pro' && <Crown className="w-[12px] h-[12px] text-[#ff5a00]" fill="currentColor" />}
                     </div>
-                    <h3 className="text-[18px] font-[800] text-white">{plan.name}</h3>
+                    <h3 className="font-[800] text-white">{plan.name}</h3>
                   </div>
                   
                   <p className="text-[13px] text-[#a3a7b7] mb-4 min-h-[38px] leading-snug">
@@ -185,7 +185,7 @@ export default function MembershipPage() {
       {/* 3. HOW IT WORKS (MOVED DOWN) */}
       <section className="pt-[60px] pb-[60px] px-6 relative bg-[#f7f9fc]">
         <div className="max-w-[1240px] mx-auto">
-          <h2 className="text-[32px] font-[800] tracking-tight mb-8 text-center text-[#111218]">How it works</h2>
+          <h2 className="font-[800] mb-8 text-center text-[#111218]">How it works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { num: "01", text: "View plans in the app" },
@@ -196,7 +196,7 @@ export default function MembershipPage() {
                 <div className="w-[44px] h-[44px] rounded-full bg-[#ff5a00] text-white flex items-center justify-center text-[16px] font-[800] mb-4 shadow-sm">
                   {step.num}
                 </div>
-                <h3 className="text-[18px] font-[800] text-[#111218]">{step.text}</h3>
+                <h3 className="font-[800] text-[#111218]">{step.text}</h3>
               </div>
             ))}
           </div>
@@ -206,7 +206,7 @@ export default function MembershipPage() {
       {/* 4. WHERE MEMBERSHIP APPLIES */}
       <section className="py-[60px] px-6 relative">
         <div className="max-w-[1240px] mx-auto">
-          <h2 className="text-[clamp(28px,4vw,36px)] font-[800] tracking-tight mb-3 text-center text-white">Where membership applies</h2>
+          <h2 className="font-[800] mb-3 text-center text-white">Where membership applies</h2>
           <p className="text-[#a3a7b7] text-[16px] text-center mb-10 font-medium">One membership, four areas of your connected drive.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -256,7 +256,7 @@ export default function MembershipPage() {
                   <item.icon className="w-[20px] h-[20px] text-[#ff5a00]" strokeWidth={2.5} />
                 </div>
                 
-                <h3 className="text-[18px] font-[800] text-white mb-2">{item.title}</h3>
+                <h3 className="font-[800] text-white mb-2">{item.title}</h3>
                 <p className="text-[14px] text-[#a3a7b7] mb-6 leading-relaxed min-h-[42px]">{item.desc}</p>
                 
                 <ul className="flex flex-col gap-3 mb-8 flex-grow">
@@ -269,7 +269,7 @@ export default function MembershipPage() {
                 </ul>
                 
                 <div className="mt-auto">
-                  <span className="inline-flex bg-[#2a1308] border border-[#ff5a00]/20 text-[#ff5a00] text-[11px] font-[800] uppercase tracking-[0.1em] px-3 py-1.5 rounded-full">
+                  <span className="inline-flex bg-[#2a1308] border border-[#ff5a00]/20 text-[#ff5a00] text-[clamp(9px,1.8vw,11px)] font-[800] uppercase tracking-[0.1em] px-3 py-1.5 rounded-full">
                     {item.tag}
                   </span>
                 </div>
@@ -282,7 +282,7 @@ export default function MembershipPage() {
       {/* 5. MANAGE IT IN THE APP */}
       <section className="py-[80px] bg-[#fff2e8] border-t border-[#ffe4d1] px-6 text-[#111218]">
         <div className="max-w-[1240px] mx-auto text-center flex flex-col items-center">
-          <h2 className="text-[clamp(28px,4vw,36px)] font-[800] tracking-tight mb-8">Manage it in the app</h2>
+          <h2 className="font-[800] mb-8">Manage it in the app</h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 mb-4">
             {[
               "Renew your membership",

@@ -46,7 +46,7 @@ export default function FeaturesPage() {
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface-2 border border-border">
                 <Icon className="h-5 w-5 text-orange" strokeWidth={1.75} />
               </span>
-              <h3 className="mt-5 font-display text-[16px] font-medium text-ink">
+              <h3 className="mt-5 font-display font-medium text-ink">
                 {title}
               </h3>
               <p className="mt-2 text-[13px] leading-relaxed text-tertiary">
