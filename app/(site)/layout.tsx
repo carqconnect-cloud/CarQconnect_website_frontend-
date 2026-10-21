@@ -35,11 +35,11 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.carQconnect.com"),
   title: {
-    default: "carQconnect | Vehicle Safety, GPS & Connected Hardware",
+    default: "carQconnect | Smart Vehicle Safety & QR Connectivity",
     template: "%s | carQconnect",
   },
   description:
-    "carQconnect connects your vehicle to QR-based safety, GPS tracking, SOS, emergency protection and everyday vehicle utilities - all in one ecosystem.",
+    "carQconnect helps vehicle owners stay connected and protected with smart QR contact, emergency support, GPS tracking, trip planning and vehicle safety features.",
   icons: {
     icon: [
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
