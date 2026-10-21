@@ -1,24 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight, MessageCircle, ShieldCheck } from "lucide-react";
+import { motion } from "framer-motion";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { faqs } from "@/lib/data/faqs";
 
 export function FaqSection() {
   return (
-    <section id="faq" data-type-scale="off" className="bg-[#f5f6f8] py-12 sm:py-24">
+    <section id="faq" data-type-scale="off" className="bg-[#f5f6f8] section-py">
 
       <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 640px) {
-          #faq {
-            padding-inline: clamp(12px, 4vw, 18px) !important;
-            padding-block: clamp(24px, 6.5vw, 40px) !important;
-          }
-          #faq .container-page {
-            padding: 0 !important;
-            margin: 0 !important;
-            width: 100% !important;
-            max-width: 100% !important;
-          }
           #faq .faq-outer-card {
             border-radius: clamp(12px, 3.6vw, 18px) !important;
           }
@@ -82,7 +75,13 @@ export function FaqSection() {
       `}} />
 
       <div className="container-page">
-        <div className="overflow-hidden rounded-[2rem] bg-[#101319] shadow-[0_28px_80px_rgba(12,15,22,0.18)] faq-outer-card">
+        <motion.div 
+          className="overflow-hidden rounded-[2rem] bg-[#101319] shadow-[0_28px_80px_rgba(12,15,22,0.18)] faq-outer-card"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="grid lg:grid-cols-[0.78fr_1.22fr] faq-grid">
             <div className="relative overflow-hidden border-b border-white/10 p-8 sm:p-12 lg:border-b-0 lg:border-r faq-left-pane">
               <div aria-hidden className="absolute -left-24 -top-20 h-72 w-72 rounded-full bg-[#ff4d0d]/20 blur-3xl" />
@@ -108,7 +107,7 @@ export function FaqSection() {
               <Link href="/faq" className="mt-6 inline-flex items-center gap-2 rounded-xl border border-[#FF5A00] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#FF5A00] hover:text-white">View all FAQs <ArrowUpRight className="h-4 w-4" /></Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -12,7 +12,7 @@ export default function HowItWorksPage() {
     <>
       {/* Intro Hero */}
       <section 
-        className="relative pt-20 pb-10 text-center"
+        className="relative pt-28 pb-16 sm:pt-36 sm:pb-20 text-center"
         style={{
           background: "radial-gradient(60% 120% at 90% 0%, rgba(255,106,0,0.28), rgba(255,106,0,0) 62%), linear-gradient(180deg, #fff1e3, #f7f9fc)"
         }}
@@ -21,7 +21,7 @@ export default function HowItWorksPage() {
           <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl text-ink">
             From sign-up to <span className="text-[#ff6a00]">your first trip.</span>
           </h1>
-          <p className="mt-4 text-lg text-secondary">
+          <p className="mt-5 text-lg text-secondary max-w-xl">
             Follow the carQconnect journey, one step at a time.
           </p>
         </div>
@@ -35,17 +35,17 @@ export default function HowItWorksPage() {
 
       {/* Closing Band */}
       <section 
-        className="py-24 text-center"
+        className="py-10 min-[640px]:py-12 lg:py-24 text-center"
         style={{
           background: "linear-gradient(110deg, #ff6a00, #ff8a2b)"
         }}
       >
         <div className="container-page">
-          <h2 className="font-display text-4xl font-bold text-white">Ready to start?</h2>
-          <p className="mt-4 text-lg text-white/90">Download the app and set up your vehicle.</p>
+          <h2 className="font-display text-2xl min-[640px]:text-3xl lg:text-4xl font-bold text-white">Ready to start?</h2>
+          <p className="mt-2 min-[640px]:mt-3 lg:mt-4 text-sm min-[640px]:text-base lg:text-lg text-white/90">Download the app and set up your vehicle.</p>
           <a
             href="/#download"
-            className="mt-8 inline-flex h-12 items-center justify-center rounded-btn bg-[#0b0c10] px-8 text-sm font-bold text-white transition hover:bg-black hover:-translate-y-1 shadow-lg"
+            className="mt-5 min-[640px]:mt-6 lg:mt-8 inline-flex h-10 lg:h-12 items-center justify-center rounded-btn bg-[#0b0c10] px-6 lg:px-8 text-sm font-bold text-white transition hover:bg-black hover:-translate-y-1 shadow-lg"
           >
             Download App
           </a>

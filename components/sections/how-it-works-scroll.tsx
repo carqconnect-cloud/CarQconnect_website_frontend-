@@ -24,9 +24,9 @@ export const steps: Step[] = [
     body: "Sign up with your mobile number or email and verify with an OTP. Then add your vehicle to your Digital Garage with its registration number, make, model, fuel type and average.",
     chips: ["OTP sign-in", "Multiple vehicles", "Documents and reminders"],
     screens: [
-      { name: "OTP verification", src: "/how-it-works/01-a.png" },
-      { name: "Add vehicle", src: "/how-it-works/01-b.png" },
-      { name: "Vehicle detail", src: "/how-it-works/01-c.png" },
+      { name: "OTP verification", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369058/01-a.png" },
+      { name: "Add vehicle", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369058/01-b.png" },
+      { name: "Vehicle detail", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369058/01-c.png" },
     ],
   },
   {
@@ -38,9 +38,9 @@ export const steps: Step[] = [
     body: "Order a QR Safety Tag or GPS Tracker in the app. After delivery, scan or enter the device details, choose your vehicle and confirm. Your hardware is now linked to it.",
     chips: ["Order in the app", "Scan or enter the code", "Linked to one vehicle"],
     screens: [
-      { name: "Marketplace", src: "/how-it-works/02-a.png" },
-      { name: "Scan or enter QR", src: "/how-it-works/02-b.png" },
-      { name: "Vehicle confirmation", src: "/how-it-works/02-c.png" },
+      { name: "Marketplace", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369059/02-a.png" },
+      { name: "Scan or enter QR", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369059/02-b.png" },
+      { name: "Vehicle confirmation", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369059/02-c.png" },
     ],
   },
   {
@@ -52,9 +52,9 @@ export const steps: Step[] = [
     body: "Anyone who scans your QR can reach you through masked calling, with no app needed, and you choose what they see. In an emergency, press and hold SOS to alert your family with your latest location.",
     chips: ["Masked calling", "Your privacy settings", "One-hold SOS"],
     screens: [
-      { name: "Active QR", src: "/how-it-works/03-a.png" },
-      { name: "QR privacy settings", src: "/how-it-works/03-b.png" },
-      { name: "Active SOS", src: "/how-it-works/03-c.png" },
+      { name: "Active QR", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369059/03-a.png" },
+      { name: "QR privacy settings", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369059/03-b.png" },
+      { name: "Active SOS", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369058/03-c.png" },
     ],
   },
   {
@@ -66,9 +66,9 @@ export const steps: Step[] = [
     body: "With a compatible GPS tracker, see live location and last-seen status, set geofences and review trips. Then plan your next journey with distance, fuel and toll estimates. Live tracking depends on device and network conditions, and estimates are clearly labelled.",
     chips: ["Live location", "Geofence alerts", "Fuel and toll estimates"],
     screens: [
-      { name: "Live vehicle map", src: "/how-it-works/04-a.png" },
-      { name: "Geofence alert", src: "/how-it-works/04-b.png" },
-      { name: "Trip summary", src: "/how-it-works/04-c.png" },
+      { name: "Live vehicle map", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369059/04-a.png" },
+      { name: "Geofence alert", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369059/04-b.png" },
+      { name: "Trip summary", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369059/04-c.png" },
     ],
   },
   {
@@ -80,9 +80,9 @@ export const steps: Step[] = [
     body: "Ask the AI assistant by chat or voice. If it cannot resolve something, a support executive takes over with your conversation, so you never repeat yourself.",
     chips: ["Chat or voice", "Human handoff", "Context carried over"],
     screens: [
-      { name: "AI chat", src: "/how-it-works/05-a.png" },
-      { name: "Voice listening", src: "/how-it-works/05-b.png" },
-      { name: "Human escalation", src: "/how-it-works/05-c.png" },
+      { name: "AI chat", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369060/05-a.png" },
+      { name: "Voice listening", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369060/05-b.png" },
+      { name: "Human escalation", src: "https://res.cloudinary.com/l44x18ko/image/upload/v1791369060/05-c.png" },
     ],
   },
 ];
@@ -111,17 +111,46 @@ function PhoneScreen({ screen }: { screen: { name: string; src?: string } }) {
 
 function StepSection({ step, index }: { step: Step; index: number }) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
+  const phonesRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(index === 0);
+  const [phonesInView, setPhonesInView] = useState(index === 0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        setInView(entries[0].isIntersecting);
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setInView(true);
+        } else {
+          setInView(false);
+        }
       },
-      { threshold: 0.35 }
+      { 
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+      }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const phoneObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setPhonesInView(true);
+        } else {
+          setPhonesInView(false);
+        }
+      },
+      { 
+        threshold: 0.12,
+        rootMargin: "0px 0px -30px 0px"
+      }
+    );
+    if (phonesRef.current) phoneObserver.observe(phonesRef.current);
+    return () => phoneObserver.disconnect();
   }, []);
 
   const aniState = inView ? "animate-in" : "animate-out";
@@ -130,18 +159,18 @@ function StepSection({ step, index }: { step: Step; index: number }) {
     <section
       id={`step-${index}`}
       ref={sectionRef}
-      className="step-section relative flex flex-col min-h-fit py-12 lg:py-12 w-full items-center justify-center overflow-hidden"
+      className="step-section relative flex flex-col min-h-fit py-12 lg:py-16 w-full items-center justify-center overflow-hidden"
       style={{
         backgroundColor: "#0e1016",
         backgroundImage: "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
         backgroundSize: "120px 120px",
       }}
     >
-      <div className="absolute left-1/2 top-0 bottom-0 w-[1px] -translate-x-1/2 bg-white/[0.08] hidden hidden lg:block" />
+      <div className="absolute left-1/2 top-0 bottom-0 w-[1px] -translate-x-1/2 bg-white/[0.08] hidden lg:block" />
 
-      <div className={`step-container ${aniState} relative z-10 flex flex-col items-center w-full max-w-[1120px] gap-[36px] px-6 py-0 lg:grid lg:grid-cols-[1fr_64px_1fr]`}>
+      <div className={`step-container ${aniState} container-page relative z-10 flex flex-col items-center gap-[36px] py-0 lg:grid lg:grid-cols-[1fr_64px_1fr]`}>
         {/* TEXT COLUMN */}
-        <div className="flex flex-col justify-center order-2 lg:order-none">
+        <div className="flex flex-col justify-center w-full order-1 lg:order-none">
           {/* Mobile Badge */}
           <div className="mb-6 flex h-8 w-8 items-center justify-center rounded-lg border border-[#ff6a00]/70 bg-[#ff6a00]/10 text-sm font-bold text-[#ff6a00] lg:hidden">
             {step.number}
@@ -165,8 +194,8 @@ function StepSection({ step, index }: { step: Step; index: number }) {
           <h2
             className="mt-6 font-extrabold"
             style={{
-              fontSize: "clamp(42px, 5.4vw, 76px)",
-              lineHeight: 1.02,
+              fontSize: "clamp(34px, 5.4vw, 76px)",
+              lineHeight: 1.05,
               letterSpacing: "-0.03em",
             }}
           >
@@ -178,7 +207,7 @@ function StepSection({ step, index }: { step: Step; index: number }) {
             </span>
           </h2>
 
-          <p className="text-anim-4 mt-6 text-[17px] text-[#b9bece] max-w-[480px]">
+          <p className="text-anim-4 mt-6 text-[16px] sm:text-[17px] text-[#b9bece] max-w-[480px]">
             {step.body}
           </p>
 
@@ -196,7 +225,7 @@ function StepSection({ step, index }: { step: Step; index: number }) {
         </div>
 
         {/* CENTER COLUMN (Desktop only) */}
-        <div className="flex items-center justify-center max-[900px]:hidden">
+        <div className="hidden lg:flex items-center justify-center">
           <div className="center-anim relative flex h-[64px] w-[64px] items-center justify-center">
             <div
               className="absolute inset-0 rounded-[12px]"
@@ -214,9 +243,9 @@ function StepSection({ step, index }: { step: Step; index: number }) {
         </div>
 
         {/* PHONES COLUMN */}
-        <div className="flex items-center justify-center max-[900px]:order-3 max-[900px]:mt-12 max-[900px]:w-full max-[900px]:scale-80">
+        <div ref={phonesRef} className="flex items-center justify-center w-full order-2 lg:order-none mt-6 lg:mt-0">
           <div
-            className="relative flex w-full max-[900px]:max-w-[420px] max-[900px]:mx-auto items-center justify-center"
+            className={`phone-stage ${phonesInView ? "phones-in-view" : "phones-out-view"} relative flex w-full max-w-[340px] sm:max-w-[420px] lg:max-w-none mx-auto items-center justify-center`}
             style={{ perspective: "1400px", containerType: "inline-size", aspectRatio: "100 / 107", width: "100%" }}
           >
             {/* Background elements */}
@@ -227,35 +256,22 @@ function StepSection({ step, index }: { step: Step; index: number }) {
 
             {/* Phones */}
             {step.screens.map((screen, i) => {
-              const isMobile = typeof window !== 'undefined' && window.innerWidth < 900;
-              const transforms = isMobile ? [
-                { tx: '-15%', ty: '0%', s: 1, z: 3, o: 1 },
-                { tx: '15%', ty: '-3%', s: 0.96, z: 2, o: 0.92 },
-                { tx: '45%', ty: '-6%', s: 0.92, z: 1, o: 0.85 },
-              ] : [
-                { tx: '0%', ty: '0%', s: 1, z: 3, o: 1 },
-                { tx: '26%', ty: '-3%', s: 0.96, z: 2, o: 0.92 },
-                { tx: '52%', ty: '-6%', s: 0.92, z: 1, o: 0.85 },
-              ];
-              const t = transforms[i];
               return (
                 <div
                   key={i}
                   className={`phone-anim phone-${i} absolute`}
                   style={{
-                    zIndex: t.z,
-                    width: "47cqw", height: "102cqw", borderRadius: "8cqw",
+                    zIndex: 3 - i,
+                    width: "47cqw",
+                    height: "102cqw",
+                    borderRadius: "8cqw",
                     backgroundColor: "#0b0c10",
                     border: "1px solid rgba(255,255,255,0.18)",
                     boxShadow: "0 30px 60px rgba(0,0,0,0.55)",
                     padding: "1.6cqw",
-                    "--final-tx": t.tx,
-                    "--final-ty": t.ty,
-                    "--final-s": t.s,
-                    "--final-o": t.o,
                   } as React.CSSProperties}
                 >
-                  <div className="relative h-full w-full overflow-hidden rounded-[30px] bg-[#1a1c23]">
+                  <div className="relative h-full w-full overflow-hidden rounded-[6cqw] sm:rounded-[30px] bg-[#1a1c23]">
                     <PhoneScreen screen={screen} />
                   </div>
                 </div>
@@ -298,24 +314,30 @@ export function HowItWorksScroll() {
           .animate-out .text-anim-1, .animate-out .text-anim-4, .animate-out .text-anim-5 {
             opacity: 0;
             transform: translateY(20px);
+            animation: none !important;
           }
           .animate-out .text-anim-2, .animate-out .text-anim-3 {
             transform: translateY(105%);
+            animation: none !important;
           }
           .animate-out .center-anim {
             opacity: 0;
             transform: scale(0.6);
+            animation: none !important;
           }
           .animate-out .arc-anim {
             stroke-dashoffset: 1;
+            animation: none !important;
           }
           .animate-out .pillar-anim {
             transform: scaleY(0);
             transform-origin: bottom;
+            animation: none !important;
           }
           .animate-out .phone-anim {
             opacity: 0;
             transform: translate3d(80px, 0, 0) rotateY(-34deg) rotateZ(3deg) scale(0.9);
+            animation: none !important;
           }
           
           .animate-in .text-anim-2 {
@@ -380,6 +402,42 @@ export function HowItWorksScroll() {
           .text-anim-2, .text-anim-3 { transform: translateY(0); }
         }
 
+        .phone-0 {
+          --final-tx: -15%;
+          --final-ty: 0%;
+          --final-s: 1;
+          --final-z: 3;
+          --final-o: 1;
+        }
+        .phone-1 {
+          --final-tx: 15%;
+          --final-ty: -3%;
+          --final-s: 0.96;
+          --final-z: 2;
+          --final-o: 0.92;
+        }
+        .phone-2 {
+          --final-tx: 45%;
+          --final-ty: -6%;
+          --final-s: 0.92;
+          --final-z: 1;
+          --final-o: 0.85;
+        }
+        @media (min-width: 1024px) {
+          .phone-0 {
+            --final-tx: 0%;
+            --final-ty: 0%;
+          }
+          .phone-1 {
+            --final-tx: 26%;
+            --final-ty: -3%;
+          }
+          .phone-2 {
+            --final-tx: 52%;
+            --final-ty: -6%;
+          }
+        }
+
         @keyframes slideUpMask {
           from { transform: translateY(105%); }
           to { transform: translateY(0); }
@@ -427,7 +485,7 @@ export function HowItWorksScroll() {
       ))}
 
       {/* Navigator */}
-      <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-50 max-[900px]:hidden">
+      <div className="fixed right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-4 z-50">
         {steps.map((_, i) => {
           const isActive = activeIndex === i;
           return (

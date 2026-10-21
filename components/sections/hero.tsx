@@ -1,219 +1,297 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { motion } from "framer-motion";
 import { HeroQrScanner } from "@/components/qr/hero-qr-scanner";
 
-function CartIcon() {
-  return (
-    <svg
-      className="buy__cart"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.9"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M2.5 3h2.2l2.5 11.3h11.1" />
-      <path d="M6.6 6.4h14.4l-1.9 6.9H8.1" />
-      <circle cx="9.4" cy="19.4" r="1.7" />
-      <circle cx="18.2" cy="19.4" r="1.7" />
-    </svg>
-  );
+const RESPONSIVE_CSS = `
+/* ===== PHONES (max 767px): natural auto-height layout ===== */
+@media (max-width: 767.98px) {
+  #home.hero {
+    height: auto !important;
+    min-height: fit-content !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding-top: calc(var(--nav-h, 60px) + 20px) !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 1st: Header Text & CTA group on top with clean side padding */
+  #home .hero__copy {
+    position: relative !important;
+    inset: auto !important;
+    order: 1 !important;
+    z-index: 2 !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 clamp(16px, 4vw, 24px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+    gap: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #home .hero__title {
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: right !important;
+    font-size: clamp(1.2rem, min(7.4vw, 36px), 2.2rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  #home .hero__line {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: right !important;
+  }
+
+  #home .hero__lede {
+    max-width: 38ch !important;
+    margin: 10px 0 0 auto !important;
+    text-align: right !important;
+    font-size: clamp(0.85rem, 3.8vw, 1.05rem) !important;
+    line-height: 1.45 !important;
+  }
+
+  /* 2nd: "Download App" CTA button directly beneath text */
+  #home .buy {
+    margin: 16px 0 0 auto !important;
+    align-self: flex-end !important;
+  }
+
+  /* 3rd: Product Graphic at the very bottom, stretching FULL WIDTH with prominent cubes sizing */
+  #home .hero__product-image {
+    position: relative !important;
+    inset: auto !important;
+    order: 2 !important;
+    z-index: 1 !important;
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: clamp(280px, 38vh, 380px) !important;
+    min-height: 260px !important;
+    aspect-ratio: auto !important;
+    margin: 8px 0 0 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    mix-blend-mode: multiply !important;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 6%, #000 18%, #000 100%) !important;
+    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 6%, #000 18%, #000 100%) !important;
+  }
+
+  #home .hero__product-image > * {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  #home .hero__product-image img,
+  #home .hero__product-image canvas,
+  #home .hero__product-image video,
+  #home .hero__product-image svg,
+  #home .hero__product-image .hero-svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    display: block !important;
+    background: transparent !important;
+    mix-blend-mode: multiply !important;
+    object-fit: cover !important;
+    object-position: 30% 100% !important;
+  }
 }
+
+/* Bahut chhoti width (<=360px) */
+@media (max-width: 360px) {
+  #home .hero__title { font-size: clamp(1.1rem, 7vw, 1.6rem) !important; }
+}
+
+/* ===== TABLET / iPAD / LANDSCAPE NON-DESKTOP (768px - 1023.98px) ===== */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  #home.hero {
+    height: auto !important;
+    min-height: fit-content !important;
+    max-height: none !important;
+    padding-top: calc(var(--nav-h, 72px) + 28px) !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    position: relative !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 1st: Header Text & CTA group stays ON TOP with clean side padding */
+  #home .hero__copy {
+    order: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 clamp(24px, 4vw, 36px) !important;
+    position: relative !important;
+    z-index: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+    box-sizing: border-box !important;
+  }
+
+  #home .hero__title {
+    font-size: clamp(2rem, 4vw, 2.8rem) !important;
+    line-height: 1.08 !important;
+    text-align: right !important;
+    max-width: 600px !important;
+  }
+
+  #home .hero__lede {
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem) !important;
+    line-height: 1.5 !important;
+    max-width: 44ch !important;
+    margin-top: 14px !important;
+    text-align: right !important;
+  }
+
+  /* 2nd: Download App button */
+  #home .buy {
+    margin-top: 20px !important;
+    margin-left: auto !important;
+    align-self: flex-end !important;
+    transform: scale(1.03);
+    transform-origin: right center;
+  }
+
+  /* 3rd: Product Graphic/Banner Image stretching FULL WIDTH to screen edges */
+  #home .hero__product-image {
+    order: 2 !important;
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 12px 0 0 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    aspect-ratio: 1669 / 780 !important;
+    z-index: 1 !important;
+    overflow: hidden !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    mix-blend-mode: multiply !important;
+    display: block !important;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 6%, #000 18%, #000 100%) !important;
+    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 6%, #000 18%, #000 100%) !important;
+  }
+
+  #home .hero__product-image .hero-svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    background: transparent !important;
+    mix-blend-mode: multiply !important;
+    object-fit: cover !important;
+  }
+}
+`;
 
 export function Hero() {
   return (
     <section data-type-scale="off" className="hero" id="home">
-      <style dangerouslySetInnerHTML={{ __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+      {/* Responsive overrides: phones (<768px) + tablet (768-1023px). Laptop 1024px+ unchanged */}
+      <style dangerouslySetInnerHTML={{ __html: RESPONSIVE_CSS }} />
 
-        /* =====================================================
-           TUNING VARIABLES (change numbers ONLY here, per range)
-           --copy-top : where the text block starts (from hero top)
-           --title    : H1 font-size
-           --lede     : grey paragraph font-size
-           --lede-w   : max width of the grey paragraph
-           --btn-*    : Download App button size
-           ===================================================== */
+      {/* Background with grey-lavender gradient */}
+      <div className="hero__bg" aria-hidden="true" />
 
-        /* PHONES (< 640px) */
-        .hero {
-          --copy-top: calc(20.6vw + 18px);
-          --copy-pr: clamp(14px, 4vw, 24px);
-          --gap: clamp(6px, 1.6vw, 18px);
-          --title: clamp(15px, 5.4vw, 34px);
-          --lede: clamp(7px, 1.9vw + 0.5px, 12px);
-          --lede-w: 60%;
-          --btn-h: clamp(26px, 3.1vw + 15px, 52px);
-          --btn-px: clamp(10px, 2vw + 3px, 28px);
-          --btn-fs: clamp(9px, 1.3vw + 5px, 17px);
-        }
-
-        /* PHONES ONLY: smaller Download App button */
-        @media (max-width: 639px) {
-          .hero {
-            --btn-h: clamp(22px, 2vw + 15px, 30px);
-            --btn-px: clamp(8px, 1.6vw + 3px, 22px);
-            --btn-fs: clamp(8px, 1.1vw + 4.5px, 14px);
-          }
-        }
-
-        /* TABLETS / SMALL LAPTOPS (640px - 1100px) */
-        @media (min-width: 640px) and (max-width: 1100px) {
-          .hero {
-            --copy-top: calc(10vw + 72px);
-            --title: calc(3.22vw + 16.5px);
-            --lede: clamp(12px, 1.35vw + 3px, 16px);
-            --lede-w: min(46ch, 52%);
-            --gap: clamp(10px, 1.6vw, 18px);
-            height: min(74vw, calc(100svh - 40px)) !important;
-            min-height: 380px !important;
-          }
-        }
-
-        /* LAPTOPS / DESKTOPS / BIG MONITORS (>= 1101px) */
-        @media (min-width: 1101px) {
-          .hero {
-            --copy-top: calc(88px + (100% - 88px) * 0.085);
-            --copy-pr: clamp(40px, 3.9vw, 96px);
-            --gap: clamp(16px, 1.5vw, 28px);
-            --title: clamp(44px, min(4.7vw, 9.2svh), 96px);
-            --lede: clamp(16px, 1.15vw, 19px);
-            --lede-w: 600px;
-            --btn-h: clamp(52px, 3.4vw, 76px);
-            --btn-px: clamp(28px, 2.2vw, 44px);
-            --btn-fs: clamp(17px, 1.45vw, 28px);
-          }
-        }
-
-        /* LANDSCAPE PHONES (short height) */
-        @media (orientation: landscape) and (max-height: 500px) {
-          .hero {
-            --copy-top: 62px;
-            --title: clamp(16px, 8.6svh, 34px);
-            --lede: clamp(8px, 2.8svh, 12px);
-            --btn-h: clamp(24px, 8svh, 36px);
-          }
-        }
-
-        /* =====================================================
-           RULES (same for every screen, they only read variables)
-           ===================================================== */
-        .hero .hero__copy {
-          position: absolute !important;
-          top: var(--copy-top) !important;
-          left: 0 !important;
-          right: 0 !important;
-          width: auto !important;          /* removes any global width cap */
-          max-width: none !important;      /* removes any global max-width (e.g. 1200px) */
-          bottom: auto !important;
-          height: auto !important;
-          margin: 0 !important;
-          padding: 0 var(--copy-pr) 0 0 !important;
-          display: flex !important;
-          flex-direction: column !important;
-          align-items: flex-end !important;
-          justify-content: flex-start !important;
-          gap: var(--gap) !important;
-          text-align: right !important;
-          transform: none !important;
-          z-index: 3 !important;           /* text always above the cube image */
-          pointer-events: none;            /* only the button is clickable */
-        }
-
-        .hero .hero__line,
-        .hero .hero__word {
-          display: block !important;
-          white-space: nowrap !important;
-        }
-
-        /* TITLE: reference-style typography (lighter stroke, tighter spacing) */
-        .hero .hero__title {
-          margin: 0 !important;
-          text-align: right !important;
-          font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
-          font-weight: 800 !important;
-          font-stretch: 100% !important;
-          font-synthesis: none !important;
-          -webkit-font-smoothing: antialiased;
-          font-size: var(--title) !important;
-          line-height: 1.02 !important;
-          letter-spacing: -0.028em !important;
-        }
-
-        .hero .hero__lede {
-          margin: 0 !important;
-          text-align: right !important;
-          font-family: 'Inter', system-ui, sans-serif !important;
-          font-size: var(--lede) !important;
-          line-height: 1.5 !important;
-          max-width: var(--lede-w) !important;
-        }
-
-        /* below 1101px the paragraph wraps naturally (smaller width, no overlap on the boxes) */
-        @media (max-width: 1100px) {
-          .hero .hero__lede .hero__line {
-            display: inline !important;
-            white-space: normal !important;
-          }
-        }
-
-        .hero .buy {
-          align-self: flex-end !important;
-          margin: 0 !important;
-          pointer-events: auto;
-          position: relative;
-          filter: drop-shadow(0 3px 8px rgba(255, 90, 20, 0.35));
-          transition: transform 0.2s ease;
-        }
-        .hero .buy::before {              /* bigger invisible tap area */
-          content: '';
-          position: absolute;
-          inset: -6px;
-          z-index: -1;
-        }
-        .hero .buy:active { transform: scale(0.96); }
-
-        .hero .buy__body {
-          min-height: var(--btn-h) !important;
-          padding-inline: var(--btn-px) !important;
-        }
-        .hero .buy__label {
-          font-family: 'Inter', system-ui, sans-serif !important;
-          font-weight: 700 !important;
-          letter-spacing: 0.02em !important;
-          font-size: var(--btn-fs) !important;
-        }
-` }}
-      />
-
-      <div className="hero__bg" aria-hidden="true">
-        <span className="hero__arc" />
-        <span className="hero__warm" />
-      </div>
-
-      <div className="hero__product-image" aria-hidden="true">
-        <HeroQrScanner />
-      </div>
-
+      {/* Content (1st: Heading, 2nd: Description & CTA Button) */}
       <div className="hero__copy">
-        <h1 className="hero__title">
-          <span className="hero__line">CONNECT YOUR VEHICLE</span>
-          <span className="hero__line">PROTECT EVERY</span>
-          <span className="hero__line">JOURNEY</span>
-        </h1>
-        <p className="hero__lede">
-          <span className="hero__line">Monitor your vehicle, stay connected on every trip, and enable</span>{" "}
-          <span className="hero__line">safer public interaction through smart QR, GPS tracking, and</span>{" "}
-          <span className="hero__line">intelligent mobility technology.</span>
-        </p>
+        <motion.h1 
+          className="hero__title"
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="hero__line">Connect your vehicle</span>
+          <span className="hero__line">Protect every</span>
+          <span className="hero__line">journey</span>
+        </motion.h1>
+        <motion.p 
+          className="hero__lede"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+        >
+          Monitor your vehicle, stay connected on every trip, and enable safer public interaction through smart QR, GPS tracking, and intelligent mobility technology.
+        </motion.p>
 
-        <a className="buy" href="/marketplace">
+        <motion.a 
+          className="buy" 
+          href="#download" 
+          aria-label="Download App"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+        >
           <span className="buy__body">
             <span className="buy__label">Download App</span>
+            <svg
+              className="buy__arrow"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M5 12h14" />
+              <path d="M13 6l6 6-6 6" />
+            </svg>
           </span>
-        </a>
+        </motion.a>
       </div>
+
+      {/* Product image (3rd in order, at the bottom) with seamless background blending */}
+      <motion.div 
+        className="hero__product-image" 
+        aria-hidden="true"
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <HeroQrScanner />
+      </motion.div>
     </section>
   );
 }

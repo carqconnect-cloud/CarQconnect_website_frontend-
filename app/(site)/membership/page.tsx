@@ -15,11 +15,11 @@ export default function MembershipPage() {
       
       {/* 1. HERO SECTION */}
       <section 
-        className="pt-[110px] pb-[40px] px-6 relative"
+        className="pt-[80px] md:pt-[110px] pb-[40px] relative"
         style={{ background: 'radial-gradient(60% 120% at 90% 0%, rgba(255,106,0,.28) 0%, rgba(255,106,0,0) 62%), linear-gradient(180deg, #fff1e3 0%, #f7f9fc 100%)' }}
       >
-        <div className="max-w-[1240px] mx-auto flex flex-col items-center text-center relative z-10">
-          <div className="w-full flex justify-start mb-4 md:mb-6"><BackButton fallback="/features" label="Back to features" /></div>
+        <div className="container-page flex flex-col items-center text-center relative z-10">
+          <div className="w-full flex justify-start -mt-2 mb-2 md:mt-0 md:mb-6"><BackButton fallback="/features" label="Back to features" /></div>
           <div className="flex items-center gap-4 mb-6">
             <div className="w-[32px] h-[2px] bg-[#ff5a00]" />
             <span className="text-[clamp(9.5px,2vw,12px)] font-[800] uppercase tracking-[0.16em] text-[#ff5a00]">MEMBERSHIP</span>
@@ -36,7 +36,7 @@ export default function MembershipPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <Link 
-              href="/#download" 
+              href="#plans" 
               className="inline-flex min-h-[48px] w-full sm:w-auto items-center justify-center rounded-[12px] bg-[#ff5a00] px-8 text-[15px] font-[800] text-white shadow-[0_4px_14px_rgba(255,90,0,0.3)] hover:bg-[#ff7226] transition-all"
             >
               View Plans
@@ -52,10 +52,10 @@ export default function MembershipPage() {
       </section>
 
       {/* 2. PLAN CARDS SECTION (MOVED UP) */}
-      <section className="pt-[20px] pb-[20px] px-6 relative overflow-hidden">
+      <section id="plans" className="pt-[20px] pb-[20px] relative overflow-hidden scroll-mt-24">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#ff5a00] opacity-[0.12] blur-[120px] pointer-events-none rounded-full" />
         
-        <div className="max-w-[1140px] mx-auto relative z-10 flex flex-col items-center">
+        <div className="container-page relative z-10 flex flex-col items-center">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-[32px] h-[1px] bg-[#ff5a00]" />
             <span className="text-[clamp(9px,1.8vw,11px)] font-[800] uppercase tracking-[0.2em] text-[#ff5a00]">PLANS</span>
@@ -78,81 +78,88 @@ export default function MembershipPage() {
             </button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full mb-6 md:mb-10">
             {membershipPlans.map((plan) => {
               const isPopular = plan.isPopular;
               return (
                 <div 
                   key={plan.id}
-                  className={`relative flex flex-col bg-[#111218] rounded-[24px] p-[24px_20px] transition-all duration-300 hover:-translate-y-2 hover:border-[#ff5a00]/50 hover:shadow-[0_8px_40px_rgba(255,90,0,0.12)] ${
+                  className={`relative flex flex-col bg-[#111218] rounded-[18px] md:rounded-[24px] p-[16px_14px] md:p-[24px_20px] transition-all duration-300 hover:-translate-y-2 hover:border-[#ff5a00]/50 hover:shadow-[0_8px_40px_rgba(255,90,0,0.12)] ${
                     isPopular 
                       ? "border border-[#ff5a00] shadow-[0_0_40px_rgba(255,90,0,0.15)] z-10" 
                       : "border border-[#2a2c36]"
                   }`}
                 >
                   {isPopular && (
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#ff5a00] text-white text-[10px] font-[800] uppercase tracking-[0.1em] px-3 py-1 rounded-full shadow-md">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#ff5a00] text-white text-[9px] md:text-[10px] font-[800] uppercase tracking-[0.1em] px-2.5 md:px-3 py-0.5 md:py-1 rounded-full shadow-md">
                       Most Popular
                     </div>
                   )}
                   
-                  <div className="flex items-center gap-3 mb-2 mt-1">
-                    <div className="w-[24px] h-[24px] rounded-full bg-[#2a1308] flex items-center justify-center border border-[#ff5a00]/30">
-                      {plan.id === 'basic' && <div className="w-[6px] h-[6px] rounded-full bg-[#ff5a00]" />}
-                      {plan.id === 'plus' && <Zap className="w-[12px] h-[12px] text-[#ff5a00]" fill="currentColor" />}
-                      {plan.id === 'pro' && <Crown className="w-[12px] h-[12px] text-[#ff5a00]" fill="currentColor" />}
+                  <div className="flex items-center gap-2.5 md:gap-3 mb-1 md:mb-2 mt-0.5 md:mt-1">
+                    <div className="w-[20px] h-[20px] md:w-[24px] md:h-[24px] rounded-full bg-[#2a1308] flex items-center justify-center border border-[#ff5a00]/30 shrink-0">
+                      {plan.id === 'free' && <div className="w-[6px] h-[6px] rounded-full bg-[#ff5a00]" />}
+                      {plan.id === 'basic' && <Zap className="w-[12px] h-[12px] text-[#ff5a00]" fill="currentColor" />}
+                      {plan.id === 'premium' && <Crown className="w-[12px] h-[12px] text-[#ff5a00]" fill="currentColor" />}
                     </div>
-                    <h3 className="font-[800] text-white">{plan.name}</h3>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-[800] text-white text-[16px] md:text-[19px]">{plan.name}</h3>
+                      {plan.badge && (
+                        <span className="bg-[#ff5a00]/20 text-[#ff5a00] border border-[#ff5a00]/40 text-[9px] font-[800] uppercase tracking-wider px-2 py-0.5 rounded-full">
+                          {plan.badge}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   
-                  <p className="text-[13px] text-[#a3a7b7] mb-4 min-h-[38px] leading-snug">
+                  <p className="text-[11.5px] md:text-[13px] text-[#a3a7b7] mb-2.5 md:mb-4 min-h-0 md:min-h-[38px] leading-snug">
                     {plan.description}
                   </p>
                   
                   <div className="flex items-baseline gap-1 mb-0.5">
-                    <span className="text-[32px] font-[800] text-white tracking-tight">₹{plan.monthlyPrice}</span>
-                    <span className="text-[13px] font-medium text-[#a3a7b7]">/ month</span>
+                    <span className="text-[25px] md:text-[32px] font-[800] text-white tracking-tight">₹{plan.monthlyPrice}</span>
+                    <span className="text-[11.5px] md:text-[13px] font-medium text-[#a3a7b7]">/ month</span>
                   </div>
                   
-                  <div className="flex items-center gap-2 mb-4 text-[12px] font-medium">
+                  <div className="flex items-center gap-2 mb-3 md:mb-4 text-[11px] md:text-[12px] font-medium">
                     <span className="text-[#8a8ea0]">{plan.billedYearly}</span>
                     <span className="text-[#1fa463] font-bold">{plan.savings}</span>
                   </div>
                   
                   <Link 
                     href="/#download"
-                    className={`inline-flex min-h-[40px] w-full items-center justify-center rounded-[10px] text-[13px] font-[800] transition-all mb-5 ${
+                    className={`inline-flex min-h-[36px] md:min-h-[40px] w-full items-center justify-center rounded-[10px] text-[12px] md:text-[13px] font-[800] transition-all mb-3.5 md:mb-5 ${
                       isPopular 
                         ? "bg-[#ff5a00] text-white hover:bg-[#ff7226] shadow-[0_6px_16px_rgba(255,90,0,0.3)]" 
                         : "bg-transparent border border-[#3a3d4a] text-white hover:border-[#ff5a00] hover:text-[#ff5a00]"
                     }`}
                   >
-                    Get {plan.name}
+                    {plan.id === 'free' ? 'Get Started' : `Get ${plan.name}`}
                   </Link>
 
-                  <div className="w-full h-[1px] bg-[#2a2c36] mb-4" />
+                  <div className="w-full h-[1px] bg-[#2a2c36] mb-2.5 md:mb-4" />
                   
-                  <div className="text-[10px] font-[800] tracking-[0.1em] text-[#8a8ea0] uppercase mb-3">
+                  <div className="text-[9px] md:text-[10px] font-[800] tracking-[0.1em] text-[#8a8ea0] uppercase mb-2 md:mb-3">
                     What's included
                   </div>
 
-                  <div className="flex flex-col gap-3 flex-grow">
+                  <div className="flex flex-col gap-2 md:gap-3 flex-grow">
                     {plan.entitlements.map((feature, i) => (
-                      <div key={i} className="flex items-start gap-2.5">
+                      <div key={i} className="flex items-start gap-2 md:gap-2.5">
                         {feature.included ? (
-                          <div className="w-[16px] h-[16px] rounded-full bg-[#ff5a00] flex items-center justify-center shrink-0 mt-0.5">
-                            <CheckCircle2 className="w-[10px] h-[10px] text-white" strokeWidth={3} />
+                          <div className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] rounded-full bg-[#ff5a00] flex items-center justify-center shrink-0 mt-0.5">
+                            <CheckCircle2 className="w-[8.5px] h-[8.5px] md:w-[10px] md:h-[10px] text-white" strokeWidth={3} />
                           </div>
                         ) : (
-                          <div className="w-[16px] h-[16px] rounded-full bg-[#1c1d24] border border-[#2a2c36] flex items-center justify-center shrink-0 mt-0.5">
+                          <div className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] rounded-full bg-[#1c1d24] border border-[#2a2c36] flex items-center justify-center shrink-0 mt-0.5">
                             <div className="w-[6px] h-[2px] bg-[#454c60]" />
                           </div>
                         )}
                         <div className="flex flex-col -mt-0.5">
-                          <span className={`text-[13px] font-[800] leading-tight ${feature.included ? 'text-white' : 'text-[#5b6070]'}`}>
+                          <span className={`text-[11.5px] md:text-[13px] font-[800] leading-tight ${feature.included ? 'text-white' : 'text-[#5b6070]'}`}>
                             {feature.name}
                           </span>
-                          <span className={`text-[12px] font-medium leading-snug mt-0.5 ${feature.included ? 'text-[#a3a7b7]' : 'text-[#454c60]'}`}>
+                          <span className={`text-[10.5px] md:text-[12px] font-medium leading-snug mt-0.5 ${feature.included ? 'text-[#a3a7b7]' : 'text-[#454c60]'}`}>
                             {feature.description}
                           </span>
                         </div>
@@ -183,8 +190,8 @@ export default function MembershipPage() {
       </section>
 
       {/* 3. HOW IT WORKS (MOVED DOWN) */}
-      <section className="pt-[60px] pb-[60px] px-6 relative bg-[#f7f9fc]">
-        <div className="max-w-[1240px] mx-auto">
+      <section className="pt-[60px] pb-[60px] relative bg-[#f7f9fc]">
+        <div className="container-page">
           <h2 className="font-[800] mb-8 text-center text-[#111218]">How it works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -204,8 +211,8 @@ export default function MembershipPage() {
       </section>
 
       {/* 4. WHERE MEMBERSHIP APPLIES */}
-      <section className="py-[60px] px-6 relative">
-        <div className="max-w-[1240px] mx-auto">
+      <section className="py-[60px] relative">
+        <div className="container-page">
           <h2 className="font-[800] mb-3 text-center text-white">Where membership applies</h2>
           <p className="text-[#a3a7b7] text-[16px] text-center mb-10 font-medium">One membership, four areas of your connected drive.</p>
           
@@ -280,8 +287,8 @@ export default function MembershipPage() {
       </section>
 
       {/* 5. MANAGE IT IN THE APP */}
-      <section className="py-[80px] bg-[#fff2e8] border-t border-[#ffe4d1] px-6 text-[#111218]">
-        <div className="max-w-[1240px] mx-auto text-center flex flex-col items-center">
+      <section className="py-[80px] bg-[#fff2e8] border-t border-[#ffe4d1] text-[#111218]">
+        <div className="container-page text-center flex flex-col items-center">
           <h2 className="font-[800] mb-8">Manage it in the app</h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 mb-4">
             {[

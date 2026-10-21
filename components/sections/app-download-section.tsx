@@ -1,21 +1,14 @@
 "use client";
 
 import { Smartphone, Apple, Mic, Calculator, MessageSquareText } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function AppDownloadSection() {
   return (
-    <section id="download" data-type-scale="off" className="bg-[#12131A] pt-[64px] pb-[72px] px-[32px] overflow-hidden">
+    <section id="download" data-type-scale="off" className="bg-[#12131A] section-py overflow-hidden">
 
       <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 640px) {
-          #download {
-            padding-inline: clamp(12px, 4vw, 18px) !important;
-            padding-block: clamp(24px, 6.5vw, 40px) !important;
-            padding-bottom: 72px !important;
-          }
-          #download .container-page {
-            padding-inline: 0 !important;
-          }
           #download .left-col {
             gap: clamp(10px, 3vw, 16px) !important;
           }
@@ -119,10 +112,16 @@ export function AppDownloadSection() {
 
       
       
-      <div className="container-page max-w-[1180px] mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-16 lg:gap-12 items-center relative">
+      <div className="container-page grid lg:grid-cols-[1.1fr_0.9fr] gap-[var(--block-gap)] items-center relative">
         
         {/* LEFT COLUMN */}
-        <div className="flex flex-col z-20 left-col">
+        <motion.div 
+          className="flex flex-col z-20 left-col"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="flex items-center gap-4 mb-6">
             <div className="w-[32px] h-[2px] bg-[#FF5A00] eyebrow-line" />
             <span className="text-[clamp(9.5px,2vw,12px)] font-bold tracking-[0.16em] text-[#FF5A00] uppercase eyebrow">GET THE APP</span>
@@ -184,10 +183,16 @@ export function AppDownloadSection() {
               </div>
             </a>
           </div>
-        </div>
+        </motion.div>
 
         {/* RIGHT COLUMN (Chat Card) */}
-        <div className="relative flex justify-center items-center lg:justify-end lg:pr-12 min-h-[380px] z-10 chat-card-wrap">
+        <motion.div 
+          className="relative flex justify-center items-center lg:justify-end lg:pr-12 min-h-[380px] z-10 chat-card-wrap"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        >
           
           <div className="relative w-full max-w-[420px]">
             {/* Radial Glow */}
@@ -243,7 +248,7 @@ export function AppDownloadSection() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   </section>
   );
