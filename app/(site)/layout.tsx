@@ -33,13 +33,24 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.carQconnect.com"),
+  metadataBase: new URL("https://www.carqconnect.com"),
   title: {
     default: "carQconnect | Smart Vehicle Safety & QR Connectivity",
     template: "%s | carQconnect",
   },
   description:
     "carQconnect helps vehicle owners stay connected and protected with smart QR contact, emergency support, GPS tracking, trip planning and vehicle safety features.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  alternates: {
+    canonical: "https://www.carqconnect.com/",
+  },
   icons: {
     icon: [
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
@@ -60,10 +71,10 @@ export const metadata: Metadata = {
     "FASTag utilities",
   ],
   openGraph: {
-    title: "carQconnect | Vehicle Safety, GPS & Connected Hardware",
+    title: "carQconnect | Smart Vehicle Safety & QR Connectivity",
     description:
-      "One connected ecosystem for your vehicle's safety, tracking and everyday journeys.",
-    url: "https://www.carQconnect.com",
+      "carQconnect helps vehicle owners stay connected and protected with smart QR contact, emergency support, GPS tracking, trip planning and vehicle safety features.",
+    url: "https://www.carqconnect.com/",
     siteName: "carQconnect",
     type: "website",
   },
